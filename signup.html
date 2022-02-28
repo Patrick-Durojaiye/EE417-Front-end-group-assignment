@@ -1,0 +1,308 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; width=device-width" />
+    <title>Maxtek Personal Finance Managment</title>
+    <link href="stylesheets/signupstyle.css" rel="stylesheet" type="text/css" />
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<body>
+
+    <div id="top" class="nav_bar">
+
+        <div class="nav_logo">
+            <a href="index.html"><img src="images/Logo_1.png" alt="Logo"></a>
+        </div>
+        <div class="nav_items">
+            <a href="index.html" title="Home">Home</a>
+            <a href="about.html" title="About">About</a>
+            <div class="dropdown">
+                <button class="dropbtn" id="dropbuttonid" onclick="myFunction()"> Appliances
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="services.html" title="Services">Services</a>
+                    <a href="portfolio.html" title="Portofolio">Portofolio</a>
+                    <a href="application.html" title="Blog">Aplications</a>
+                </div>
+            </div>
+            <a href="contact.html" title="Contact">Contact</a>
+            <a href="newsblog.html" title="News">News and Blog</a>
+        </div>
+        <a href="signup.html"><button> Sign Up </button></a>
+        <a href="login.html"><button> Login </button></a>
+
+        <script>
+            function myFunction() {
+                document.getElementById("myDropdown").classList.toggle("show");
+            }
+
+            // // Close the dropdown if the user clicks outside of it
+
+            window.onclick = function (e) {
+                if (!e.target.matches('.dropbtn')) {
+                    var myDropdown = document.getElementById("myDropdown");
+                    if (myDropdown.classList.contains('show')) {
+                        $("myDropdown").fadeIn();
+                        myDropdown.classList.remove('show');
+                    }
+                }
+            }
+
+
+        </script>
+    </div>
+
+    <!-- Sign up form with relevant fields of data collection to set up an account-->
+    <div class="signup_section">
+        <br>
+        <h1> Sign Up to Maxtek Bank Today</h1>
+        <br>
+        <form action="/action_page.php" class="form_section" id="form">
+            <label for="Name" style="font-size: medium;">Name:</label>
+            <input type="text" id="name" name="name" class="inputs" oncopy="copyfunc()">
+            <div class="error"></div>
+            <br>
+            <br>
+
+            <label for="email" style="font-size: medium;">Email:</label>
+            <input type="email" id="email" name="email" class="inputs" oncopy="copyfunc()">
+            <div class="error"></div>
+            <br>
+            <br>
+
+            <label for="date_of_birth" style="font-size: medium;">Date of Birth:</label>
+            <input type="date" id="date_of_birth" name="date_of_birth" class="inputs">
+            <div class="error"></div>
+            <br>
+            <br>
+
+            <label for="password" style="font-size: medium;">Password:</label>
+            <input type="password" id="password" name="password" class="inputs">
+            <div class="error"></div>
+            <br>
+            <br>
+            <a href="signup.html"><button class="button_input" type="submit"> Sign Up </button></a>
+        </form>
+
+    </div>
+
+    <script>
+        let id = (id) => document.getElementById(id);
+
+        let classes = (classes) => document.getElementsByClassName(classes);
+
+        let username = id("name"),
+            email = id("email"),
+            dateofbirth = id("date_of_birth"),
+            password = id("password"),
+            form = id("form"),
+
+            errorMsg = classes("error");
+
+        var username2Arr = [];
+        var email4Arr = [];
+        var dateofbirthArr = [];
+        var passwordArr = [];
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            engine(username, 0, "Username can't be blank");
+            engine(email, 1, "Email can't be blank");
+            engine(dateofbirth, 2, "Date of birth can't be blank");
+            engine(password, 3, "Password can't be blank")
+        });
+
+        let engine = (id, serial, message) => {
+
+            if (id.value.trim() === "") {
+
+
+                errorMsg[serial].innerHTML = message;
+                id.style.border = "2px solid red";
+
+            }
+
+            else {
+
+                errorMsg[serial].innerHTML = "";
+                id.style.border = "2px solid green";
+
+                if (serial == 3) {
+                    username2Arr.push(username.value.trim());
+                    email4Arr.push(email.value.trim());
+                    dateofbirthArr.push(dateofbirth.value.trim());
+                    passwordArr.push(password.value.trim());
+
+                    // stores form inputs into local storage
+                    localStorage.setItem("usernamesignup", JSON.stringify(username2Arr));
+                    localStorage.setItem("emailsignup", JSON.stringify(email4Arr));
+                    localStorage.setItem("dateofbirth", JSON.stringify(dateofbirthArr));
+                    localStorage.setItem("password", JSON.stringify(passwordArr));
+                    alert("Signed Up");
+
+                }
+
+            }
+        }
+
+        function copyfunc() {
+            alert("You just copied sensistive becareful not to paste it in an unsecure place");
+        }
+    </script>
+
+    <!-- Type of accounts with benefits listed -->
+    <div class="account_title">
+        <h1> Account Types </h1>
+    </div>
+    <div class="ranking_section">
+        <div class="ranking_sec1">
+            <h3 style="text-align: center;">Basic</h3>
+            <ul style="padding-left: 40%;">
+                <li>
+                    <p>Savings</p>
+                </li>
+                <li>
+                    <p>Loans</p>
+                </li>
+                <li>
+                    <p>Junior Account</p>
+                </li>
+            </ul>
+        </div>
+
+        <br>
+
+        <div class="ranking_sec2">
+            <h3 style="text-align: center;">Plus</h3>
+            <ul style="padding-left: 40%;">
+                <li>
+                    <p>Travel Insurance</p>
+                </li>
+                <li>
+                    <p>Single Airport Lounge Access</p>
+                </li>
+                <li>
+                    <p>Bill Splittig</p>
+                </li>
+            </ul>
+        </div>
+
+        <br>
+
+        <div class="ranking_sec3">
+            <h3 style="text-align: center;">Premium</h3>
+            <ul style="padding-left: 40%;">
+                <li>
+                    <p>Metal Debit Card</p>
+                </li>
+                <li>
+                    <p>Cash Back on All Transactions</p>
+                </li>
+                <li>
+                    <p>0% fees on FX rates</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="dom"></div>
+    <button onclick="funcs()">Try it</button>
+
+    <script>
+        function funcs() {
+
+            document.getElementById("dom").innerHTML = `
+    <div>
+    ${ft()}
+    </div>
+    `;
+        }
+
+        function ft() {
+
+            let html = "";
+            $("*").parents().each(function () {
+
+                //console.log(this);
+                console.log(this.nodeName);
+                html += `
+                    <p> ${this.nodeName} </p> 
+                    `;
+                if (this.hasChildNodes()) {
+                    //console.log(this.childNodes);
+
+                    for (let i = 0; i < this.childNodes.length; i++) {
+                        //console.log(this.childNodes[i].nodeName);
+                        html += `
+                        <p style="padding-left:30px"> ${this.childNodes[i].nodeName} </p> 
+                        `;
+
+                        if (this.childNodes[i].childNodes) {
+                            console.log("yes")
+                            html += `
+                        <p style="padding-left:60px"> ${this.childNodes[i].nodeName} </p> 
+                        `;
+                        }
+                    }
+
+                }
+
+            });
+
+            return html;
+        }
+    </script>
+    <div class="footer">
+        <br>
+        <h1>Sign Up For Updates</h1>
+        <br>
+        <form action="/action_page.php" id="formft">
+            <label for="email" style="font-size: medium;">Enter your email:</label>
+            <input type="email" id="emailft" name="email" class="email_input">
+            <input type="submit" class="footer_button">
+        </form>
+        <div class="error_success"></div>
+        <br>
+    </div>
+
+    <script>
+
+        let emailft = id("emailft"),
+            formft = id("formft"),
+
+            error_successMsg = classes("error_success");
+
+        var emailftArr = [];
+
+        formft.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            engineft(emailft, 0, "Email can't be blank");
+        });
+
+        let engineft = (id, serial, message) => {
+            if (id.value.trim() === "") {
+                error_successMsg[serial].innerHTML = message;
+                id.style.border = "2px solid red";
+            }
+
+            else {
+                error_successMsg[serial].innerHTML = "Email has been recorded";
+                id.style.border = "2px solid green";
+
+                if (serial == 0) {
+                    emailftArr.push(emailft.value.trim());
+
+                    localStorage.setItem("emailft", JSON.stringify(emailftArr));
+                }
+            }
+        }
+    </script>
+
+</body>

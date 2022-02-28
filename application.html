@@ -1,0 +1,325 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; width=device-width" />
+    <title>Maxtek Personal Finance Managment</title>
+    <link href="stylesheets/applicationstyle.css" rel="stylesheet" type="text/css" />
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<body>
+    <div id="top" class="nav_bar">
+
+        <div class="nav_logo">
+            <a href="index.html"><img src="images/Logo_1.png" alt="Logo"></a>
+        </div>
+        <div class="nav_items">
+            <a href="index.html" title="Home">Home</a>
+            <a href="about.html" title="About">About</a>
+            <div class="dropdown" style="padding-left: 90px;">
+                <button class="dropbtn" id="dropbuttonid" onclick="myFunction()"> Appliances
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="services.html" title="Services">Services</a>
+                    <a href="portfolio.html" title="Portofolio">Portofolio</a>
+                    <a href="application.html" title="Blog">Aplications</a>
+                </div>
+            </div>
+            <a href="contact.html" title="Contact">Contact</a>
+            <a href="newsblog.html" title="News">News and Blog</a>
+        </div>
+        <a href="signup.html"><button> Sign Up </button></a>
+        <a href="login.html"><button> Login </button></a>
+
+    </div>
+
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // // Close the dropdown if the user clicks outside of it
+
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+
+    </script>
+    <br>
+    <div class="mobile_section">
+
+        <br>
+        <h1> Top Up Mobile</h1>
+        <br>
+
+        <!-- Form to top up Mobile credit -->
+        <form action="/action_page.php" class="form_section" id="form">
+            <label for="Phone_No" style="font-size: medium;">Phone No:</label>
+            <input type="number" id="Phone_No" name="Phone_No" class="inputs">
+            <div class="error"></div>
+            <br>
+            <br>
+
+            <label for="email" style="font-size: medium;">Email:</label>
+            <input type="email" id="email" name="email" class="inputs">
+            <div class="error"></div>
+            <br>
+            <br>
+
+            <label for="memo" style="font-size: medium;">Memo:</label>
+            <input type="text" id="memo" name="memo" class="inputs">
+            <div class="error"></div>
+            <br>
+            <br>
+            <!-- Bold tag to make part of the label bold -->
+            <label for="price" style="font-size:medium;">Choose how much do you want to <b>Transfer</b>
+            </label>
+            <br>
+
+
+            <!-- Radio inputs for selection-->
+            <input type="radio" id="5" name="amount" value="5">
+            <label for="html" style="font-size: medium;"> €5</label><br>
+            <input type="radio" id="5" name="amount" value="10">
+            <label for="css" style="font-size: medium;"> €10</label><br>
+            <input type="radio" id="5" name="amount" value="20">
+            <label for="javascript" style="font-size: medium;">€20</label>
+            <br>
+            <br>
+            <div class="error"></div>
+            <a href="application.html"><button class="button_input" type="submit"> Send </button></a>
+        </form>
+        <div class="displaytopup">
+            <button onclick="topupdisplay()" id="displaybutn">Show Top Up Info</button>
+            <br>
+            <div id="displaytbid" class="displaytb"></div>
+        </div>
+    </div>
+    <script>
+        let id = (id) => document.getElementById(id);
+
+        let classes = (classes) => document.getElementsByClassName(classes);
+        let names = (names) => document.getElementsByName(names);
+        let phoneno = id("Phone_No"),
+            email3 = id("email"),
+            memo2 = id("memo"),
+            form = id("form"),
+
+            errorMsg = classes("error");
+
+        var phoneArr = [];
+        var email3Arr = [];
+        var memo2Arr = [];
+
+        let displaybutn = id("displaybutn");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            engine(phoneno, 0, "Username can't be blank");
+            engine(email3, 1, "Email can't be blank");
+            engine(memo2, 2, "Textfield can't be blank");
+        });
+
+        let engine = (id, serial, message) => {
+
+            if (id.value.trim() === "") {
+
+
+                errorMsg[serial].innerHTML = message;
+                id.style.border = "2px solid red";
+
+            }
+
+            else {
+
+                errorMsg[serial].innerHTML = "";
+                id.style.border = "2px solid green";
+
+                if (serial == 2) {
+                    phoneArr.push(phoneno.value.trim());
+                    email3Arr.push(email3.value.trim());
+                    memo2Arr.push(memo2.value.trim());
+
+                    localStorage.setItem('phone', JSON.stringify(phoneArr));
+                    localStorage.setItem('email3', JSON.stringify(email3Arr));
+                    localStorage.setItem('memo2', JSON.stringify(memo2Arr));
+                }
+
+            }
+        }
+
+        function topupdisplay() {
+            var phn = JSON.parse(localStorage.getItem("phone"));
+            var em3 = JSON.parse(localStorage.getItem("email3"));
+            var mem2 = JSON.parse(localStorage.getItem("memo2"));
+
+            const createTable = (phn, em3, mem2) => {
+                return `
+
+                    <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col"> Phone No </th>
+                        <th scope="col"> Email </th>
+                        <th scope="col"> Memo </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    ${createTableData(phn, em3, mem2)}
+                    </tbody>
+                    </table>
+                    `;
+            };
+
+            const createTableData = (phn, em3, mem2) => {
+                let html = "";
+
+                for (var i = 0; i < mem2.length; i++) {
+
+                    html += `
+                        <tr>
+                        <td>${phn[i]}</td>
+                        <td>${em3[i]}</td>
+                        <td>${mem2[i]}</td>
+                         </tr>
+                        `;
+
+                }
+
+                return html;
+            };
+
+            document.getElementById("displaytbid").innerHTML = `
+                    <div>
+                        ${createTable(phn, em3, mem2)}
+                    </div>
+                    `;
+
+        }
+
+    </script>
+
+    <div class="lounge_section">
+
+        <br>
+        <h1> Lounge Passes</h1>
+        <br>
+        <form action="/action_page.php" class="form_section" id="form1">
+            <input type="radio" id="html" name="fav_language" value="HTML">
+            <label for="html" style="font-size: medium;">Dublin Airport Lounge: $100</label><br>
+            <input type="radio" id="css" name="fav_language" value="CSS">
+            <label for="css" style="font-size: medium;">Gatwick Airport Lounge: $150</label><br>
+            <input type="radio" id="javascript" name="fav_language" value="JavaScript">
+            <label for="javascript" style="font-size: medium;">Glasgow Airport Lounge: $200</label>
+            <br>
+            <br>
+            <a href="application.html"><button class="button_input"> Buy </button></a>
+        </form>
+    </div>
+
+    <div id="dom"></div>
+    <button onclick="funcs()">Try it</button>
+
+    <script>
+        function funcs() {
+
+            document.getElementById("dom").innerHTML = `
+    <div>
+    ${ft()}
+    </div>
+    `;
+        }
+
+        function ft() {
+
+            let html = "";
+            $("*").parents().each(function () {
+
+                //console.log(this);
+                console.log(this.nodeName);
+                html += `
+                    <p> ${this.nodeName} </p> 
+                    `;
+                if (this.hasChildNodes()) {
+                    //console.log(this.childNodes);
+
+                    for (let i = 0; i < this.childNodes.length; i++) {
+                        //console.log(this.childNodes[i].nodeName);
+                        html += `
+                        <p style="padding-left:30px"> ${this.childNodes[i].nodeName} </p> 
+                        `;
+
+                        if (this.childNodes[i].childNodes) {
+                            console.log("yes")
+                            html += `
+                        <p style="padding-left:60px"> ${this.childNodes[i].nodeName} </p> 
+                        `;
+                        }
+                    }
+
+                }
+
+            });
+
+            return html;
+        }
+    </script>
+    <br>
+    <div class="footer">
+        <br>
+        <h1>Sign Up For Updates</h1>
+        <br>
+        <form action="/action_page.php" id="formft">
+            <label for="email" style="font-size: medium;">Enter your email:</label>
+            <input type="email" id="emailft" name="email" class="email_input">
+            <input type="submit" class="footer_button">
+        </form>
+        <div class="error_success"></div>
+        <br>
+    </div>
+
+    <script>
+
+        let emailft = id("emailft"),
+            formft = id("formft"),
+
+            error_successMsg = classes("error_success");
+
+        var emailftArr = [];
+
+        formft.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            engineft(emailft, 0, "Email can't be blank");
+        });
+
+        let engineft = (id, serial, message) => {
+            if (id.value.trim() === "") {
+                error_successMsg[serial].innerHTML = message;
+                id.style.border = "2px solid red";
+            }
+
+            else {
+                error_successMsg[serial].innerHTML = "Email has been recorded";
+                id.style.border = "2px solid green";
+
+                if (serial == 0) {
+                    emailftArr.push(emailft.value.trim());
+
+                    localStorage.setItem("emailft", JSON.stringify(emailftArr));
+                }
+            }
+        }
+    </script>
+
+</body>

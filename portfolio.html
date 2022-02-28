@@ -1,0 +1,491 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; width=device-width" />
+    <title>Maxtek Personal Finance Managment</title>
+    <link href="stylesheets/portfoliostyle.css" rel="stylesheet" type="text/css" />
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<body>
+    <div id="top" class="nav_bar">
+
+        <div class="nav_logo">
+            <a href="index.html"><img src="images/Logo_1.png" alt="Logo"></a>
+        </div>
+        <div class="nav_items">
+            <a href="index.html" title="Home">Home</a>
+            <a href="about.html" title="About">About</a>
+            <div class="dropdown" style="padding-left: 90px;">
+                <button class="dropbtn" id="dropbuttonid" onclick="myFunction()"> Appliances
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content" id="myDropdown">
+                    <a href="services.html" title="Services">Services</a>
+                    <a href="portfolio.html" title="Portofolio">Portofolio</a>
+                    <a href="application.html" title="Blog">Aplications</a>
+                </div>
+            </div>
+            <a href="contact.html" title="Contact">Contact</a>
+            <a href="newsblog.html" title="News">News and Blog</a>
+        </div>
+        <a href="signup.html"><button> Sign Up </button></a>
+        <a href="login.html"><button> Login </button></a>
+
+    </div>
+
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // // Close the dropdown if the user clicks outside of it
+
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+
+    </script>
+
+
+    <div class="portfolio_section">
+
+        <!-- Trading View widget displayed using java script that shows different stocks and commodidites, this was used to complement the portfolio page -->>
+        <div class="tradingview-widget-container" style="padding-left: 240px;">
+            <h1 style="text-align: center;"> Stocks </h1>
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener"
+                    target="_blank"><span class="blue-text">Financial Markets</span></a> by TradingView</div>
+            <script type="text/javascript"
+                src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+                    {
+                        "colorTheme": "light",
+                            "dateRange": "12M",
+                                "showChart": true,
+                                    "locale": "en",
+                                        "largeChartUrl": "",
+                                            "isTransparent": false,
+                                                "showSymbolLogo": true,
+                                                    "showFloatingTooltip": false,
+                                                        "width": "400",
+                                                            "height": "660",
+                                                                "plotLineColorGrowing": "rgba(255, 0, 0, 1)",
+                                                                    "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+                                                                        "gridLineColor": "rgba(240, 243, 250, 0)",
+                                                                            "scaleFontColor": "rgba(120, 123, 134, 1)",
+                                                                                "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+                                                                                    "belowLineFillColorFalling": "rgba(255, 152, 0, 0.12)",
+                                                                                        "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+                                                                                            "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+                                                                                                "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+                                                                                                    "tabs": [
+                                                                                                        {
+                                                                                                            "title": "Indices",
+                                                                                                            "symbols": [
+                                                                                                                {
+                                                                                                                    "s": "FOREXCOM:SPXUSD",
+                                                                                                                    "d": "S&P 500"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "FOREXCOM:NSXUSD",
+                                                                                                                    "d": "US 100"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "FOREXCOM:DJI",
+                                                                                                                    "d": "Dow 30"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "INDEX:DEU40",
+                                                                                                                    "d": "DAX Index"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "FOREXCOM:UKXGBP",
+                                                                                                                    "d": "UK 100"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "originalTitle": "Indices"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "title": "Futures",
+                                                                                                            "symbols": [
+                                                                                                                {
+                                                                                                                    "s": "CME_MINI:ES1!",
+                                                                                                                    "d": "S&P 500"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "CME:6E1!",
+                                                                                                                    "d": "Euro"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "COMEX:GC1!",
+                                                                                                                    "d": "Gold"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "NYMEX:CL1!",
+                                                                                                                    "d": "Crude Oil"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "NYMEX:NG1!",
+                                                                                                                    "d": "Natural Gas"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "CBOT:ZC1!",
+                                                                                                                    "d": "Corn"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "originalTitle": "Futures"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "title": "Bonds",
+                                                                                                            "symbols": [
+                                                                                                                {
+                                                                                                                    "s": "CME:GE1!",
+                                                                                                                    "d": "Eurodollar"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "CBOT:ZB1!",
+                                                                                                                    "d": "T-Bond"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "CBOT:UB1!",
+                                                                                                                    "d": "Ultra T-Bond"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "EUREX:FGBL1!",
+                                                                                                                    "d": "Euro Bund"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "EUREX:FBTP1!",
+                                                                                                                    "d": "Euro BTP"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "EUREX:FGBM1!",
+                                                                                                                    "d": "Euro BOBL"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "originalTitle": "Bonds"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "title": "Forex",
+                                                                                                            "symbols": [
+                                                                                                                {
+                                                                                                                    "s": "FX:EURUSD"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "FX:GBPUSD"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "FX:USDJPY"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "FX:USDCHF"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "FX:AUDUSD"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "s": "FX:USDCAD"
+                                                                                                                }
+                                                                                                            ],
+                                                                                                            "originalTitle": "Forex"
+                                                                                                        }
+                                                                                                    ]
+                    }
+                </script>
+        </div>
+
+        <div>
+            <!-- A Chart was built using the Chart.js library and was included using the script html tag, the data was inserted and displayed-->
+            <div class="article_wrapper" style="padding-bottom: 20%;">
+
+                <h1 style="text-align: center;"> Investment Portfolio </h1>
+                <canvas id="myChart" style="width:100%;max-width:600px; padding-left: 70px;"></canvas>
+
+                <script>
+                    var xValues = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var yValues = [50, 83, 90, 140, 110, 170, 340, 400, 630, 644, 735, 932];
+
+                    new Chart("myChart", {
+                        type: "line",
+                        data: {
+                            labels: xValues,
+                            datasets: [{
+                                fill: false,
+                                lineTension: 0,
+                                backgroundColor: "rgba(0,0,255,1.0)",
+                                borderColor: "rgba(0,0,255,0.1)",
+                                data: yValues
+                            }]
+                        },
+                        options: {
+                            legend: { display: false },
+                            scales: {
+                                yAxes: [{
+                                    ticks: { min: 0, max: 1000 },
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Value $'
+                                    }
+                                }],
+
+                                xAxes: [{
+                                    scaleLabel: {
+                                        display: true,
+                                        labelString: 'Time'
+                                    }
+                                }],
+                            }
+                        }
+                    });
+                </script>
+                <br>
+                <br>
+
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <h1 style="text-align: center;"> Assets in Portfolio</h1>
+    <div class="assets">
+        <br>
+        <br>
+        <div class="tablesection">
+            <!-- A table of the portfolio holdings was built with a border built around the table items and surrounding of the overall table -->
+            <style>
+                table,
+                th,
+                td {
+                    border: 1px solid black;
+                }
+            </style>
+
+            <div id="porttbid" class="porttb"></div>
+        </div>
+    </div>
+
+    <!-- Form to add assets into the assets table -->
+    <h1 style="text-align: center;"> Add New Assets</h1>
+    <div class="assets_form">
+        <form action="/action_page.php" class="form_items" id="form">
+            <label for="Name" style="font-size: medium;">Asset Name:</label>
+            <input type="text" id="assetname" name="name" class="inputs">
+            <div class="error"></div>
+            <br>
+            <br>
+
+            <label for="textfield" style="font-size: medium;">Asset Value $:</label>
+            <input type="number" id="value" name="textfield" class="inputs">
+            <div class="error"></div>
+            <br>
+            <br>
+            <input class="button_input" type="submit">
+        </form>
+    </div>
+    <button class="button_input" type="submit" onclick="assetsdisplay()">
+        Show Portfolio
+    </button>
+
+    <script>
+        let id = (id) => document.getElementById(id);
+
+        let classes = (classes) => document.getElementsByClassName(classes);
+
+        let assetname = id("assetname"),
+            value = id("value"),
+            form = id("form"),
+
+            errorMsg = classes("error");
+
+        var assetnameArr = [];
+        var valueArr = [];
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            engine(assetname, 0, "Assetname can't be blank");
+            engine(value, 1, "Value can't be blank");
+        });
+
+        let engine = (id, serial, message) => {
+            // gets the input field value and removes the white spaces using the .trim() and if the field value is blank it returns a red border and an error message 
+            if (id.value.trim() === "") {
+
+
+                errorMsg[serial].innerHTML = message;
+                id.style.border = "2px solid red";
+
+            }
+
+            // if input field isn't blank returns a green border and stores input fields in local storage
+            else {
+
+                errorMsg[serial].innerHTML = "";
+                id.style.border = "2px solid green";
+
+                if (serial == 1) {
+                    assetnameArr.push(assetname.value.trim());
+                    valueArr.push(value.value.trim());
+
+                    localStorage.setItem('assetnames', JSON.stringify(assetnameArr));
+                    localStorage.setItem('values', JSON.stringify(valueArr));
+                }
+
+            }
+        }
+
+        function assetsdisplay() {
+            var asn = JSON.parse(localStorage.getItem("assetnames"));
+            var vals = JSON.parse(localStorage.getItem("values"));
+
+            // cretaes a table with the following table colomn names
+            const createTable = (asn, vals) => {
+                return `
+
+                    <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col"> Assetnames </th>
+                        <th scope="col"> Values </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    ${createTableData(asn, vals)}
+                    </tbody>
+                    </table>
+                    `;
+            };
+
+            // gets the saved data from local storage and stores it in the table as rows on each colomn 
+            const createTableData = (asn, vals) => {
+                let html = "";
+
+                for (var i = 0; i < vals.length; i++) {
+
+                    html += `
+                        <tr>
+                        <td>${asn[i]}</td>
+                        <td>${vals[i]}</td>
+                         </tr>
+                        `;
+
+                }
+
+                return html;
+            };
+
+            // gets the div section by the id and adds the table to it 
+            document.getElementById("porttbid").innerHTML = `
+                    <div>
+                        ${createTable(asn, vals)}
+                    </div>
+                    `;
+
+        }
+    </script>
+
+    <div id="dom"></div>
+    <button onclick="funcs()">Try it</button>
+
+    <script>
+        function funcs() {
+
+            document.getElementById("dom").innerHTML = `
+<div>
+${ft()}
+</div>
+`;
+        }
+
+        function ft() {
+
+            let html = "";
+            $("*").parents().each(function () {
+
+                //console.log(this);
+                console.log(this.nodeName);
+                html += `
+                <p> ${this.nodeName} </p> 
+                `;
+                if (this.hasChildNodes()) {
+                    //console.log(this.childNodes);
+
+                    for (let i = 0; i < this.childNodes.length; i++) {
+                        //console.log(this.childNodes[i].nodeName);
+                        html += `
+                    <p style="padding-left:30px"> ${this.childNodes[i].nodeName} </p> 
+                    `;
+
+                        if (this.childNodes[i].childNodes) {
+                            console.log("yes")
+                            html += `
+                    <p style="padding-left:60px"> ${this.childNodes[i].nodeName} </p> 
+                    `;
+                        }
+                    }
+
+                }
+
+            });
+
+            return html;
+        }
+    </script>
+
+    <br>
+    <div class="footer">
+        <br>
+        <h1>Sign Up For Updates</h1>
+        <br>
+        <form action="/action_page.php" id="form1">
+            <label for="email" style="font-size: medium;">Enter your email:</label>
+            <input type="email" id="email1" name="email" class="email_input">
+            <input type="submit" class="footer_button">
+        </form>
+        <div class="error_success"></div>
+        <br>
+    </div>
+    <script>
+
+        let emailft = id("email1"),
+            form1 = id("form1"),
+
+            error_successMsg = classes("error_success");
+
+        var emailftArr = [];
+
+        form1.addEventListener("submit", (e) => {
+
+            e.preventDefault();
+
+            engine1(emailft, 0, "Email can't be blank");
+        });
+
+        let engine1 = (id, serial, message) => {
+            if (id.value.trim() === "") {
+                error_successMsg[serial].innerHTML = message;
+                id.style.border = "2px solid red";
+            }
+
+            else {
+                error_successMsg[serial].innerHTML = "Email has been recorded";
+                id.style.border = "2px solid green";
+
+                if (serial == 0) {
+                    emailftArr.push(emailft.value.trim());
+
+                    localStorage.setItem("emailft", JSON.stringify(emailftArr));
+                }
+            }
+        }
+    </script>
+</body>
